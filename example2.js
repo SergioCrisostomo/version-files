@@ -1,4 +1,4 @@
 function newFunction(){
     alert('I\'m new here!');
-    window.makeAlert('myScript.js is loaded!');
+    window.parent.makeAlert('myScript.js is loaded!');
 }
