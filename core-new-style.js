@@ -3691,6 +3691,7 @@ try {
 	propertySetters.text(node, 'a{left:0}');
 	style = propertyGetters.text(node).indexOf('left') == -1;
 } catch(e){}
+alert('Style: ' + (!!style));
 if (style) (function(set, get){
 	propertySetters.text = function(node, value){
 	alert(node.get('tag'));
