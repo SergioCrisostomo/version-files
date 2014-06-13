@@ -3718,19 +3718,19 @@ var canChangeStyleHtml = (function(){
     } catch(e){}
     return flag;
 })();
-
+alert(propertySetters.text);
 if (!canChangeStyleHtml) (function(set, get){
 	
 	propertySetters.text = function(node, value){
 		if (node.get('tag') == 'style' && node.styleSheet) node.styleSheet.cssText = value;
-		else set(node, value);
+		else node[properties.text] = value;
 	};
 	propertyGetters.text = function(node){
 		if (node.get('tag') == 'style' && node.styleSheet) return node.styleSheet.cssText;
-		return get(node);
+		return node[properties.text];
 	};
 })(propertySetters.text, propertyGetters.text);
-style = null;
+alert(propertySetters.text);
 /*</ltIE9>*/
 
 /* getProperty, setProperty */
