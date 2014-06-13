@@ -3707,16 +3707,17 @@ if (volatileInputValue || !html5InputSupport) propertySetters.type = function(no
 /*</IE>*/
 
 /* <ltIE9> */
-var canChangeStyleHtml = (function(){
-    var div = document.createElement('style'),
-        flag = false;
-    try {
-        div.innerHTML = '#justTesing{margin: 0px;}';
-        flag = !!div.innerHTML;
-    } catch(e){}
-    return flag;
-})();
-if (!canChangeStyleHtml) (function(set, get){
+// oldIE can't set the CSS text to a <style> element: #2265
+var style = document.createElement('style');
+style.type = 'text/css';
+try {
+	propertySetters.text(node, 'a{left:0}');
+	style = propertyGetters.text(node).indexOf('left') == -1;
+	alert(style);
+} catch(e){
+	style == false;
+}
+if (style) (function(set, get){
 	propertySetters.text = function(node, value){
 		if (node.get('tag') == 'style' && node.styleSheet) node.styleSheet.cssText = value;
 		else set(node, value);
@@ -3726,6 +3727,7 @@ if (!canChangeStyleHtml) (function(set, get){
 		return get(node);
 	};
 })(propertySetters.text, propertyGetters.text);
+style = null;
 /* </ltIE9> */
 
 /* getProperty, setProperty */
