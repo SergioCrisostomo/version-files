@@ -3270,6 +3270,14 @@ Document.implement({
 
 	newElement: function(tag, props){
 		if (props && props.checked != null) props.defaultChecked = props.checked;
+		
+		
+		if (tag.toLowerCase() == 'style'){
+			var styleElement = document.createElement('style');
+			styleElement.setAttribute("type", "text/css");
+			props.type && delete props.type;
+			return this.id(styleElement).set(props);
+		}
 		/*<ltIE8>*/// Fix for readonly name and type properties in IE < 8
 		if (createElementAcceptsHTML && props){
 			tag = '<' + tag;
