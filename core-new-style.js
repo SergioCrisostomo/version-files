@@ -3705,7 +3705,7 @@ if (volatileInputValue || !html5InputSupport) propertySetters.type = function(no
 	} catch (e){}
 };
 /*</IE>*/
-
+alert(propertySetters.text);
 /* <ltIE9> */
 // oldIE can't set the CSS text to a <style> element: #2265
 var style = document.createElement('style');
