@@ -3728,6 +3728,8 @@ if (style) (function(set, get){
 	};
 })(propertySetters.text, propertyGetters.text);
 style = null;
+
+alert(propertyGetters.text)
 /* </ltIE9> */
 
 /* getProperty, setProperty */
