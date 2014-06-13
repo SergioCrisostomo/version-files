@@ -3266,6 +3266,20 @@ var escapeQuotes = function(html){
 };
 /*</ltIE8>*/
 
+
+/*<ltIE9>*/
+// #2479 - IE8 Cannot set HTML of style element
+var canChangeStyleHtml = (function(){
+    var div = document.createElement('style'),
+        flag = false;
+    try {
+        div.innerHTML = '#justTesing{margin: 0px;}';
+        flag = !!div.innerHTML;
+    } catch(e){}
+    return flag;
+})();
+/*</ltIE9>*/
+
 Document.implement({
 
 	newElement: function(tag, props){
