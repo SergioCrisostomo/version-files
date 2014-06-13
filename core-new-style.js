@@ -3270,15 +3270,6 @@ Document.implement({
 
 	newElement: function(tag, props){
 		if (props && props.checked != null) props.defaultChecked = props.checked;
-		/*<ltIE9>*/
-		if (tag.toLowerCase() == 'style'){
-			var styleEl = this.createElement('style');
-			styleEl.setAttribute("type", "text/css");
-			props.type && delete props.type;
-			return this.id(this.createElement(tag)).set(props);
-		}
-		/*<ltI/E9>*/
-		
 		/*<ltIE8>*/// Fix for readonly name and type properties in IE < 8
 		if (createElementAcceptsHTML && props){
 			tag = '<' + tag;
@@ -3691,6 +3682,32 @@ if (volatileInputValue || !html5InputSupport) propertySetters.type = function(no
 	} catch (e){}
 };
 /*</IE>*/
+
+/* <ltIE9> */
+// oldIE can't set the CSS text to a <style> element: #2265
+var style = document.createElement('style');
+style.type = 'text/css';
+try {
+	propertySetters.text(node, 'a{left:0}');
+	style = propertyGetters.text(node).indexOf('left') == -1;
+} catch(e){}
+if (style) (function(set, get){
+	propertySetters.text = function(node, value){
+	alert(node.get('tag'));
+	alert(node.get('tag') == 'style');
+	alert(node.get('tag') == 'STYLE');
+		if (node.get('tag') == 'style' && node.styleSheet) node.styleSheet.cssText = value;
+		else set(node, value);
+	};
+	propertyGetters.text = function(node){
+		if (node.get('tag') == 'style' && node.styleSheet) return node.styleSheet.cssText;
+		return get(node);
+	};
+})(propertySetters.text, propertyGetters.text);
+style = null;
+
+/* </ltIE9> */
+
 
 /* getProperty, setProperty */
 
