@@ -3705,21 +3705,23 @@ if (volatileInputValue || !html5InputSupport) propertySetters.type = function(no
 	} catch (e){}
 };
 /*</IE>*/
-alert(propertySetters.text);
-/* <ltIE9> */
-// oldIE can't set the CSS text to a <style> element: #2265
-var style = document.createElement('style');
-style.type = 'text/css';
-try {
-	propertySetters.text(node, 'a{left:0}');
-	style = propertyGetters.text(node).indexOf('left') == -1;
-} catch(e){}
-alert('Style L3717: ' + style);
-if (style) (function(set, get){
+
+/*<ltIE9>*/
+
+// #2479 - IE8 Cannot set HTML of style element
+var canChangeStyleHtml = (function(){
+    var div = document.createElement('style'),
+        flag = false;
+    try {
+        div.innerHTML = '#justTesing{margin: 0px;}';
+        flag = !!div.innerHTML;
+    } catch(e){}
+    return flag;
+})();
+
+if (!canChangeStyleHtml) (function(set, get){
 	
 	propertySetters.text = function(node, value){
-		alert(node.get('tag'));
-		alert(node.styleSheet);
 		if (node.get('tag') == 'style' && node.styleSheet) node.styleSheet.cssText = value;
 		else set(node, value);
 	};
@@ -3729,10 +3731,9 @@ if (style) (function(set, get){
 	};
 })(propertySetters.text, propertyGetters.text);
 style = null;
-/* </ltIE9> */
+/*</ltIE9>*/
 
 /* getProperty, setProperty */
-
 /* <ltIE9> */
 var pollutesGetAttribute = (function(div){
 	div.random = 'attribute';
