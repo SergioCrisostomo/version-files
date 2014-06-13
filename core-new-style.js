@@ -3722,6 +3722,8 @@ alert(propertySetters.text);
 if (!canChangeStyleHtml) (function(set, get){
 	
 	propertySetters.text = function(node, value){
+	alert(properties.text);
+	alert(node.get('tag') == 'style' && node.styleSheet);
 		if (node.get('tag') == 'style' && node.styleSheet) node.styleSheet.cssText = value;
 		else node[properties.text] = value;
 	};
