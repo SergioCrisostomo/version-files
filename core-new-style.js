@@ -3270,14 +3270,16 @@ Document.implement({
 
 	newElement: function(tag, props){
 		if (props && props.checked != null) props.defaultChecked = props.checked;
-		
-		alert(tag);
-		if (tag.toLowerCase() == 'style'){
+
+		/*<ltIE9>*/ // IE needs the type to be set before changing content of style element
+		if (!canChangeStyleHtml && ~tag.indexOf('style')){
 			var styleElement = document.createElement('style');
 			styleElement.setAttribute("type", "text/css");
 			props.type && delete props.type;
 			return this.id(styleElement).set(props);
 		}
+		/*</ltIE9>*/
+
 		/*<ltIE8>*/// Fix for readonly name and type properties in IE < 8
 		if (createElementAcceptsHTML && props){
 			tag = '<' + tag;
@@ -3699,12 +3701,8 @@ try {
 	propertySetters.text(node, 'a{left:0}');
 	style = propertyGetters.text(node).indexOf('left') == -1;
 } catch(e){}
-alert('Style: ' + (!!style));
 if (style) (function(set, get){
 	propertySetters.text = function(node, value){
-	alert(node.get('tag'));
-	alert(node.get('tag') == 'style');
-	alert(node.get('tag') == 'STYLE');
 		if (node.get('tag') == 'style' && node.styleSheet) node.styleSheet.cssText = value;
 		else set(node, value);
 	};
@@ -3714,9 +3712,7 @@ if (style) (function(set, get){
 	};
 })(propertySetters.text, propertyGetters.text);
 style = null;
-
 /* </ltIE9> */
-
 
 /* getProperty, setProperty */
 
