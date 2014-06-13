@@ -3713,7 +3713,6 @@ style.type = 'text/css';
 try {
 	propertySetters.text(node, 'a{left:0}');
 	style = propertyGetters.text(node).indexOf('left') == -1;
-	alert(style);
 } catch(e){
 	style == false;
 }
@@ -3723,17 +3722,15 @@ if (style) (function(set, get){
 		else set(node, value);
 	};
 	propertyGetters.text = function(node){
-		alert(!!(node.get('tag') == 'style' && node.styleSheet) + 'ge***')
 		if (node.get('tag') == 'style' && node.styleSheet) return node.styleSheet.cssText;
 		return get(node);
 	};
 })(propertySetters.text, propertyGetters.text);
 style = null;
-
-alert(propertyGetters.text)
 /* </ltIE9> */
 
 /* getProperty, setProperty */
+
 /* <ltIE9> */
 var pollutesGetAttribute = (function(div){
 	div.random = 'attribute';
