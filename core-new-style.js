@@ -3271,7 +3271,7 @@ Document.implement({
 	newElement: function(tag, props){
 		if (props && props.checked != null) props.defaultChecked = props.checked;
 		
-		
+		alert(tag);
 		if (tag.toLowerCase() == 'style'){
 			var styleElement = document.createElement('style');
 			styleElement.setAttribute("type", "text/css");
