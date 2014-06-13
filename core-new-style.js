@@ -3723,7 +3723,7 @@ if (style) (function(set, get){
 		else set(node, value);
 	};
 	propertyGetters.text = function(node){
-		alert(!!(node.get('tag') == 'style' && node.styleSheet) + ***)
+		alert(!!(node.get('tag') == 'style' && node.styleSheet) + 'ge***')
 		if (node.get('tag') == 'style' && node.styleSheet) return node.styleSheet.cssText;
 		return get(node);
 	};
