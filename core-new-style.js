@@ -3706,9 +3706,7 @@ if (volatileInputValue || !html5InputSupport) propertySetters.type = function(no
 };
 /*</IE>*/
 
-/*<ltIE9>*/
-
-// #2479 - IE8 Cannot set HTML of style element
+/* <ltIE9> */
 var canChangeStyleHtml = (function(){
     var div = document.createElement('style'),
         flag = false;
@@ -3718,12 +3716,8 @@ var canChangeStyleHtml = (function(){
     } catch(e){}
     return flag;
 })();
-alert(propertySetters.text);
 if (!canChangeStyleHtml) (function(set, get){
-	
 	propertySetters.text = function(node, value){
-	alert(properties.text);
-	alert(node.get('tag') == 'style' && node.styleSheet);
 		if (node.get('tag') == 'style' && node.styleSheet) node.styleSheet.cssText = value;
 		else set(node, value);
 	};
@@ -3732,8 +3726,7 @@ if (!canChangeStyleHtml) (function(set, get){
 		return get(node);
 	};
 })(propertySetters.text, propertyGetters.text);
-alert(propertySetters.text);
-/*</ltIE9>*/
+/* </ltIE9> */
 
 /* getProperty, setProperty */
 /* <ltIE9> */
