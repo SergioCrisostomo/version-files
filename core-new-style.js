@@ -3725,11 +3725,11 @@ if (!canChangeStyleHtml) (function(set, get){
 	alert(properties.text);
 	alert(node.get('tag') == 'style' && node.styleSheet);
 		if (node.get('tag') == 'style' && node.styleSheet) node.styleSheet.cssText = value;
-		else node[properties.text] = value;
+		else set(node, value);
 	};
 	propertyGetters.text = function(node){
 		if (node.get('tag') == 'style' && node.styleSheet) return node.styleSheet.cssText;
-		return node[properties.text];
+		return get(node);
 	};
 })(propertySetters.text, propertyGetters.text);
 alert(propertySetters.text);
