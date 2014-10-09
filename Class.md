@@ -30,7 +30,7 @@ Classes can contain functions within them in the same way that they can contain 
 ```js
 
 var Animal = new Class({
-	initialize: function(options) {
+	initialize: function(options){
 		this.options = options; //save our options.
 		//if the options specify that the animal
 		//is asleep when we create it, call sleep()
@@ -38,10 +38,10 @@ var Animal = new Class({
 		//else it's awake
 		else this.awake();
 	},
-	sleep: function() {
+	sleep: function(){
 		this.isAsleep = true;
 	},
-	awake: function() {
+	awake: function(){
 		this.isAsleep = false;
 	}
 });
@@ -77,7 +77,7 @@ Classes can be extended to create more complex functionality. In previous exampl
 ```js
 
 var Animal = new Class({
-	initialize: function(options) {
+	initialize: function(options){
 		this.options = options;
 		this.isAlive = true;
 	}
@@ -85,7 +85,7 @@ var Animal = new Class({
 
 var Mammal = new Class({
 	Extends: Animal,
-	initialize: function(options) {
+	initialize: function(options){
 		//this executes the initialize() function in the Animal Class
 		//let's also pass the options to the parent's initialize function 
 		this.parent(options);
@@ -94,10 +94,10 @@ var Mammal = new Class({
 		this.hasFur = true;
 		this.producesMilk = true;
 	},
-	sleep: function() {
+	sleep: function(){
 		this.isAsleep = true;
 	},
-	awake: function() {
+	awake: function(){
 		this.isAsleep = false;
 	}
 });
@@ -108,7 +108,7 @@ var Mouse = new Class({
 
 var Cat = new Class({
 	Extends: Mammal,
-	initialize: function(options) {
+	initialize: function(options){
 		//call initialize of Mammal
 		//pass along any options for
 		//the Mammal and Animal classes
@@ -117,7 +117,7 @@ var Cat = new Class({
 		this.hasTail = true;
 		this.isCarnivorous = true;
 	},
-	catchMouse: function(mouse) {
+	catchMouse: function(mouse){
 		mouse.isAlive = false;
 		return mouse;
 	}
@@ -156,7 +156,7 @@ Note that in using *Extends* you extend the parent class into the child. It is p
 //from the example above...
 var Cat = new Class({
 	Extends: Mammal,
-	initialize: function(options) {
+	initialize: function(options){
 		//call initialize of Mammal
 		//pass along any options for
 		//the Mammal and Animal classes
@@ -165,7 +165,7 @@ var Cat = new Class({
 		this.hasTail = true;
 		this.isCarnivorous = true;
 	},
-	catchMouse: function(mouse) {
+	catchMouse: function(mouse){
 		mouse.isAlive = false;
 		return mouse;
 	}
@@ -175,11 +175,11 @@ var Cat = new Class({
 
 Cat = new Class({
 	Extends: Cat,
-	initialize: function(options) {
+	initialize: function(options){
 		this.parent(options);
 		this.energy = 0;
 	},
-	catchMouse: function(mouse) {
+	catchMouse: function(mouse){
 		this.parent(mouse);
 		this.energy++;
 	}
@@ -203,7 +203,7 @@ Here's where *.implement* comes in handy. This allows you to add functionality i
 
 //this is the same Animal class as above
 var Animal = new Class({
-	initialize: function(options) {
+	initialize: function(options){
 		this.options = options;
 		this.isAlive = true;
 	}
@@ -211,7 +211,7 @@ var Animal = new Class({
 
 //let's change it to include some additional functionality:
 Animal.implement({
-	eat: function() {
+	eat: function(){
 		if (typeof this.energy == "undefined") this.energy = 0;
 		this.energy++;
 	}
@@ -228,8 +228,8 @@ Let's say that later we want to add the ability to pass in a starting value in t
 
 //let's let you pass in a starting value
 Animal.implement({
-			eat: function() {
-				if (typeof this.energy == "undefined") {
+			eat: function(){
+				if (typeof this.energy == "undefined"){
 					if (typeof this.options.startingEnergy != "undefined") this.energy = this.options.startingEnergy;
 					else this.energy = 0;
 					this.energy++;
@@ -244,7 +244,7 @@ Implement is used in MooTools mostly to extend classes that are in the "Native" 
 ```js
 
 String.implement({
-	alert: function() {
+	alert: function(){
 		alert(this);
 	}
 });
@@ -271,7 +271,7 @@ There's one other way to use implement that's pretty handy. You can create a cla
 var Carnivore = new Class({
 	isCarnivore: true,
 	energy: 0,
-	eat: function() {
+	eat: function(){
 		this.energy++;
 	}
 });
@@ -279,13 +279,13 @@ var Carnivore = new Class({
 var Cat = new Class({
 	Extends: Mammal,
 	Implements: Carnivore,
-	initialize: function() {
+	initialize: function(){
 		this.parent() //call initialize of Mammal
 		this.hasClaws = true;
 		this.hasTail = true;
 		this.isCarnivorous = true;
 	},
-	function: catchMouse(mouse) {
+	function: catchMouse(mouse){
 		mouse.isAlive = false;
 		return mouse;
 	}
@@ -309,7 +309,7 @@ This is why we use *Implement* when we implement classes into each other. Here's
 ```js
 
 var Thingy = new Class({
-	go: function() {
+	go: function(){
 		alert('hi');
 	}
 });
@@ -318,13 +318,13 @@ var myClass = new Thingy();
 myClass.go(); /* alerts 'hi' */
 
 Thingy.implement({
-	go: function() {
+	go: function(){
 		alert('implemented');
 	}
 });
 myClass.go(); /* alerts 'implemented' */
 Thingy = Thingy.extend({
-	go: function() {
+	go: function(){
 		alert('extended');
 	}
 });
