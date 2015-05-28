@@ -7,5 +7,11 @@
 </head>
 <body>
   <a href="http://pt.stackoverflow.com/q/66138/129" target="_parent">Clica aqui! Eu estou dentro de uma iFrame...</a>
+  <script>
+    document.querySelector('a').addEventListener('click', function(e){
+      e.preventDefault;
+      window.parent-location = this.href;
+    });
+  </script>
   </body>
 </html>
