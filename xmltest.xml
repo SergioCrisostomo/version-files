@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+    <carousel>
+        <group name="Name1">
+            <slide></slide>
+        </group>
+        <group name="Name2">
+            <slide></slide>
+        </group>
+    </carousel>
+    <script type="text/javascript">
+        var head = document.getElementsByTagName('head')[0];
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'https://ajax.googleapis.com/ajax/libs/mootools/1.6.0/mootools-nocompat.js';
+        script.onload = function() {
+            var groups = $$('carousel > *');
+            console.log(MooTools.version, groups);
+        };
+        head.appendChild(script);
+    </script>
+</root>
