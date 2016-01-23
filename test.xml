@@ -1,11 +1,14 @@
+
 <?xml version="1.0" encoding="UTF-8" ?>
-<carousel>
-    <group name="Name1">
-        <slide></slide>
-    </group>
-    <group name="Name2">
-        <slide></slide>
-    </group>
+<root>
+    <carousel>
+        <group name="Name1">
+            <slide></slide>
+        </group>
+        <group name="Name2">
+            <slide></slide>
+        </group>
+    </carousel>
     <script type="text/javascript">
         var head = document.getElementsByTagName('head')[0];
         var script = document.createElement('script');
@@ -17,5 +20,8 @@
         };
         head.appendChild(script);
     </script>
-</carousel>
+</root>
+
+
+
 
