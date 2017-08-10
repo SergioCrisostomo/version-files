@@ -8389,7 +8389,9 @@ exports.default = {
                         if (fromUser) {
                             cascader.isLoadedChildren = true;
                         }
-                        _this.handleTriggerItem(item);
+                        if (item.children.length) {
+                            _this.handleTriggerItem(item);
+                        }
                     });
                     return;
                 }
@@ -10560,10 +10562,6 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
-var _vue = __webpack_require__(12);
-
-var _vue2 = _interopRequireDefault(_vue);
-
 var _input = __webpack_require__(42);
 
 var _input2 = _interopRequireDefault(_input);
@@ -10934,7 +10932,7 @@ exports.default = {
                 var isConfirm = this.confirm;
                 var type = this.type;
 
-                this.picker = new _vue2.default(this.panel).$mount(this.$refs.picker);
+                this.picker = this.Panel.$mount(this.$refs.picker);
                 if (type === 'datetime' || type === 'datetimerange') {
                     isConfirm = true;
                     this.picker.showTime = true;
@@ -18890,7 +18888,7 @@ module.exports = { render: function render() {
     var _vm = this;var _h = _vm.$createElement;var _c = _vm._self._c || _h;
     return _c('div', {
       class: _vm.classes
-    }, [_vm.label ? _c('label', {
+    }, [_vm.label || _vm.$slots.label ? _c('label', {
       class: [_vm.prefixCls + '-label'],
       style: _vm.labelStyles
     }, [_vm._t("label", [_vm._v(_vm._s(_vm.label))])], 2) : _vm._e(), _vm._v(" "), _c('div', {
@@ -23054,6 +23052,10 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _vue = __webpack_require__(12);
+
+var _vue2 = _interopRequireDefault(_vue);
+
 var _picker = __webpack_require__(97);
 
 var _picker2 = _interopRequireDefault(_picker);
@@ -23107,10 +23109,12 @@ exports.default = {
                 this.currentValue = '';
             }
         }
-        this.panel = getPanel(this.type);
-        this.panel.propsData = {
-            steps: this.steps
-        };
+        var Panel = _vue2.default.extend(getPanel(this.type));
+        this.Panel = new Panel({
+            propsData: {
+                steps: this.steps
+            }
+        });
     }
 };
 
