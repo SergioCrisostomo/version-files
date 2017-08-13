@@ -23037,7 +23037,8 @@ exports.default = {
             }
         }
 
-        this.panel = getPanel(this.type);
+        var panel = getPanel(this.type);
+        this.Panel = new Vue(panel);
     }
 };
 
