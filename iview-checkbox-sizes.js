@@ -4442,7 +4442,6 @@ var _checkboxGroup2 = _interopRequireDefault(_checkboxGroup);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log('Checkbox fixing!!!');
 _checkbox2.default.Group = _checkboxGroup2.default;
 exports.default = _checkbox2.default;
 
@@ -8756,7 +8755,7 @@ exports.default = {
         },
         size: {
             type: String,
-            default: 'medium'
+            default: 'small'
         }
     },
     data: function data() {
@@ -8783,7 +8782,7 @@ exports.default = {
         innerClasses: function innerClasses() {
             var _ref3;
 
-            var size = this.size || 'small';
+            var size = this.size;
             return [prefixCls + '-inner', (_ref3 = {}, (0, _defineProperty3.default)(_ref3, prefixCls + '-inner-small', size == 'small'), (0, _defineProperty3.default)(_ref3, prefixCls + '-inner-medium', size == 'medium'), (0, _defineProperty3.default)(_ref3, prefixCls + '-inner-large', size == 'large'), _ref3)];
         },
         inputClasses: function inputClasses() {
