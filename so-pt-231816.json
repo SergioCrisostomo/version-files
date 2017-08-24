@@ -1,11 +1,1 @@
-[{
-    remetente: "Leonardo -  <leonardo@email.com.br>",
-    destinatario: "leonardo@gmail.com",
-    assunto: "teste2",
-    texto: "Teste2"
-}, {
-    assunto: "teste2",
-    destinatario: "leonardo@gmail.com",
-    remetente: "Leonardo ",
-    texto: "Teste2"
-}]
+[{"remetente":"Leonardo -  <leonardo@email.com.br>","destinatario":"leonardo@gmail.com","assunto":"teste2","texto":"Teste2"},{"assunto":"teste2","destinatario":"leonardo@gmail.com","remetente":"Leonardo ","texto":"Teste2"}]
