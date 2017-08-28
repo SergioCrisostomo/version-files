@@ -30145,7 +30145,7 @@ exports.default = {
             touchScroll: false,
             handleScroll: (0, _lodash2.default)(this.onScroll, 150, { leading: false }),
             pointerUpHandler: this.onPointerUp.bind(this),
-            pointerMoveHandler: (0, _lodash2.default)(this.onPointerMove, 100, { leading: false }) };
+            pointerMoveHandler: (0, _lodash2.default)(this.onPointerMove, 50, { leading: false }) };
     },
 
     computed: {
@@ -30392,6 +30392,12 @@ module.exports = { render: function render() {
         "wheel": _vm.onWheel,
         "touchstart": function touchstart($event) {
           $event.stopPropagation();
+          $event.preventDefault();
+          _vm.onPointerDown($event);
+        },
+        "touchmove": function touchmove($event) {
+          $event.stopPropagation();
+          $event.preventDefault();
           _vm.onPointerDown($event);
         }
       }
