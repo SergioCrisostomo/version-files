@@ -30283,10 +30283,8 @@ exports.default = {
             this.pointerTouchDown = this.getPointerCoordinates(e);
             window.addEventListener(handlers.pointerup, this.pointerUpHandler);
             window.addEventListener(handlers.pointermove, function (e) {
-                e.preventDefault();
-                e.stopPropagation();
                 _this4.pointerMoveHandler(e);
-            });
+            }, { passive: true });
         },
         onPointerMove: function onPointerMove(e) {
             if (!this.pointerTouchDown) return;
@@ -30396,11 +30394,7 @@ module.exports = { render: function render() {
       on: {
         "scroll": _vm.handleScroll,
         "wheel": _vm.onWheel,
-        "touchstart": function touchstart($event) {
-          $event.stopPropagation();
-          $event.preventDefault();
-          _vm.onPointerDown($event);
-        }
+        "touchstart": _vm.onPointerDown
       }
     }, [_c('div', {
       ref: "toploader",
@@ -30427,7 +30421,7 @@ module.exports = { render: function render() {
         "text": _vm.loadingText,
         "active": _vm.showBottomLoader
       }
-    })], 1)])]);
+    })], 1)]), _vm._v("\n    rc2\n")]);
   }, staticRenderFns: [] };
 
 /***/ }),
@@ -31450,4 +31444,3 @@ module.exports = throttle;
 /***/ })
 /******/ ]);
 });
-console.log('rc2');
