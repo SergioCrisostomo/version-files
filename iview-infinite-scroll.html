@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Checkbox test</title>
+		<script src="./vue.js" charset="utf-8"></script>
+		<script src="./cityListInfiniteScroll.js" charset="utf-8"></script>
+		<script src="./iview.js" charset="utf-8"></script>
+		<link rel="stylesheet" href="./styles/iview.css">
+		<style media="screen">
+			#app, #checkbox-group {
+			    padding: 10px;
+			}
+
+			section {margin: 20px;}
+			section > div {
+				width: 300px;
+				padding: 15px;
+				margin: 5px;
+				background-color: #ddf;
+				border: 1px solid #446;
+				border-radius: 5px;
+				margin : 0 auto;
+			}
+			.ivu-infinite-scroll-container {
+				height: 300px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+		    <infinite-scroll :on-reach-edge="loadData" loading-text="L-o-a-d-i-n-g...">
+		       <section v-for="item in cityList" :key="item.city">
+		       	 <div class="city">
+					 <p><b>City:</b><span> {{item.city}}</span></p>
+					 <p v-if="item.country"><b>Country:</b><span> {{item.country}}</span> <span>{{item.nr}}</span></p>
+				 </div>
+		       </section>
+		    </infinite-scroll>
+		</div>
+<script type="text/javascript">
+let topNr = 1;
+let bottomNr = 1;
+Vue.use(iview);
+new Vue({
+	el: '#app',
+	data: function() {
+		const from = 100;
+		const to = 200;
+		return {
+			model1: '',
+			from,
+			to,
+			cityList: window.cityList.slice(from, to).map(el => ((el.nr = 0), el))
+		};
+	},
+	methods: {
+		loadData: function(dir) {
+			//	console.log('Load called', dir);
+			return new Promise(resolve => {
+				setTimeout(() => {
+					const list = window.cityList;
+					if (dir > 0) {
+						const nextFrom = this.from - 2;
+						this.cityList.unshift(
+							...list.slice(nextFrom, this.from).reverse().map(el => ((el.nr = topNr++), el)).reverse()
+						);
+						this.from = nextFrom;
+					} else {
+						const nextTo = this.to + 2;
+						this.cityList.push(...list.slice(this.to, nextTo).map(el => ((el.nr = bottomNr++), el)));
+						this.to = nextTo;
+					}
+					resolve();
+				}, 500);
+			});
+		}
+	}
+});
+</script>
+	</body>
+</html>
