@@ -30283,8 +30283,10 @@ exports.default = {
             this.pointerTouchDown = this.getPointerCoordinates(e);
             window.addEventListener(handlers.pointerup, this.pointerUpHandler);
             window.addEventListener(handlers.pointermove, function (e) {
+                e.preventDefault();
+
                 _this4.pointerMoveHandler(e);
-            }, { passive: true });
+            }, { passive: false });
         },
         onPointerMove: function onPointerMove(e) {
             if (!this.pointerTouchDown) return;
@@ -30421,7 +30423,7 @@ module.exports = { render: function render() {
         "text": _vm.loadingText,
         "active": _vm.showBottomLoader
       }
-    })], 1)]), _vm._v("\n    rc2\n")]);
+    })], 1)]), _vm._v("\n    rc4\n")]);
   }, staticRenderFns: [] };
 
 /***/ }),
