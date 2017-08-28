@@ -30145,7 +30145,7 @@ exports.default = {
             touchScroll: false,
             handleScroll: (0, _lodash2.default)(this.onScroll, 150, { leading: false }),
             pointerUpHandler: this.onPointerUp.bind(this),
-            pointerMoveHandler: (0, _lodash2.default)(this.onPointerMove, 150, { leading: false }) };
+            pointerMoveHandler: (0, _lodash2.default)(this.onPointerMove, 100, { leading: false }) };
     },
 
     computed: {
@@ -30230,9 +30230,9 @@ exports.default = {
             if (this.isLoading) return;
 
             var wheelDelta = event.wheelDelta ? event.wheelDelta : -(event.detail || event.deltaY);
-            this.stretch(wheelDelta);
+            this.stretchEdge(wheelDelta);
         },
-        stretch: function stretch(direction) {
+        stretchEdge: function stretchEdge(direction) {
             var _this3 = this;
 
             clearTimeout(this.rubberRollBackTimeout);
@@ -30275,6 +30275,7 @@ exports.default = {
         },
         onPointerDown: function onPointerDown(e) {
             if (e.type == 'mousedown') return;
+
             this.pointerTouchDown = this.getPointerCoordinates(e);
             window.addEventListener(handlers.pointerup, this.pointerUpHandler);
             window.addEventListener(handlers.pointermove, this.pointerMoveHandler);
@@ -30286,7 +30287,7 @@ exports.default = {
             var pointerPosition = this.getPointerCoordinates(e);
             var yDiff = pointerPosition.y - this.pointerTouchDown.y;
 
-            this.stretch(yDiff);
+            this.stretchEdge(yDiff);
 
             if (!this.touchScroll) {
                 var wasDragged = Math.abs(yDiff) > this.minimumStartDragOffset;
@@ -30294,6 +30295,7 @@ exports.default = {
             }
         },
         onPointerUp: function onPointerUp() {
+
             window.removeEventListener(handlers.pointerup, this.pointerUpHandler);
             window.removeEventListener(handlers.pointermove, this.pointerMoveHandler);
 
@@ -30384,7 +30386,10 @@ module.exports = { render: function render() {
       on: {
         "scroll": _vm.handleScroll,
         "wheel": _vm.onWheel,
-        "touchstart": _vm.onPointerDown
+        "touchstart": function touchstart($event) {
+          $event.stopPropagation();
+          _vm.onPointerDown($event);
+        }
       }
     }, [_c('div', {
       ref: "toploader",
