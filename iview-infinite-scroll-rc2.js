@@ -30275,7 +30275,9 @@ exports.default = {
         },
         onPointerDown: function onPointerDown(e) {
             if (e.type == 'mousedown') return;
-
+            document.body.style.width = '100%';
+            document.body.style.position = 'fixed';
+            document.body.style.overflow = 'hidden';
             this.pointerTouchDown = this.getPointerCoordinates(e);
             window.addEventListener(handlers.pointerup, this.pointerUpHandler);
             window.addEventListener(handlers.pointermove, this.pointerMoveHandler);
@@ -30295,6 +30297,8 @@ exports.default = {
             }
         },
         onPointerUp: function onPointerUp() {
+            document.body.style.position = 'unset';
+            document.body.style.overflow = 'unset';
 
             window.removeEventListener(handlers.pointerup, this.pointerUpHandler);
             window.removeEventListener(handlers.pointermove, this.pointerMoveHandler);
