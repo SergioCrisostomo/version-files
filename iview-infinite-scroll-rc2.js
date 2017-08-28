@@ -30274,13 +30274,19 @@ exports.default = {
             };
         },
         onPointerDown: function onPointerDown(e) {
+            var _this4 = this;
+
             if (e.type == 'mousedown') return;
             document.body.style.width = '100%';
             document.body.style.position = 'fixed';
             document.body.style.overflow = 'hidden';
             this.pointerTouchDown = this.getPointerCoordinates(e);
             window.addEventListener(handlers.pointerup, this.pointerUpHandler);
-            window.addEventListener(handlers.pointermove, this.pointerMoveHandler);
+            window.addEventListener(handlers.pointermove, function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                _this4.pointerMoveHandler(e);
+            });
         },
         onPointerMove: function onPointerMove(e) {
             if (!this.pointerTouchDown) return;
@@ -30391,11 +30397,6 @@ module.exports = { render: function render() {
         "scroll": _vm.handleScroll,
         "wheel": _vm.onWheel,
         "touchstart": function touchstart($event) {
-          $event.stopPropagation();
-          $event.preventDefault();
-          _vm.onPointerDown($event);
-        },
-        "touchmove": function touchmove($event) {
           $event.stopPropagation();
           $event.preventDefault();
           _vm.onPointerDown($event);
@@ -31449,5 +31450,4 @@ module.exports = throttle;
 /***/ })
 /******/ ]);
 });
-
-console.log('rc1');
+console.log('rc2');
