@@ -1131,26 +1131,38 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.initTimeDate = exports.nextMonth = exports.prevMonth = exports.siblingMonth = exports.getFirstDayOfMonth = exports.getDayCountOfMonth = exports.parseDate = exports.formatDate = exports.toDate = undefined;
 
-var _date = __webpack_require__(369);
+var _toConsumableArray2 = __webpack_require__(46);
 
-var _date2 = _interopRequireDefault(_date);
+var _toConsumableArray3 = _interopRequireDefault(_toConsumableArray2);
+
+var _date2 = __webpack_require__(369);
+
+var _date3 = _interopRequireDefault(_date2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var toDate = exports.toDate = function toDate(date) {
-    date = new Date(date);
-    if (isNaN(date.getTime())) return null;
-    return date;
+    var _date = new Date(date);
+
+    if (isNaN(_date.getTime()) && typeof date === 'string') {
+        _date = date.split('-').map(Number);
+        _date[1] += 1;
+        _date = new (Function.prototype.bind.apply(Date, [null].concat((0, _toConsumableArray3.default)(_date))))();
+    }
+
+
+    if (isNaN(_date.getTime())) return null;
+    return _date;
 };
 
 var formatDate = exports.formatDate = function formatDate(date, format) {
     date = toDate(date);
     if (!date) return '';
-    return _date2.default.format(date, format || 'yyyy-MM-dd');
+    return _date3.default.format(date, format || 'yyyy-MM-dd');
 };
 
 var parseDate = exports.parseDate = function parseDate(string, format) {
-    return _date2.default.parse(string, format || 'yyyy-MM-dd');
+    return _date3.default.parse(string, format || 'yyyy-MM-dd');
 };
 
 var getDayCountOfMonth = exports.getDayCountOfMonth = function getDayCountOfMonth(year, month) {
@@ -5753,14 +5765,7 @@ module.exports = __webpack_require__(28).Array.find;
 
 
 /***/ }),
-/* 155 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(440);
-module.exports = __webpack_require__(28).Array.isArray;
-
-
-/***/ }),
+/* 155 */,
 /* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11708,14 +11713,11 @@ var DATE_PARSER = function DATE_PARSER(text, format) {
     return (0, _util.parseDate)(text, format);
 };
 var RANGE_FORMATTER = function RANGE_FORMATTER(value, format) {
-    console.log('RANGE_FORMATTER', value, format);
-    console.log(Array.isArray(value) && value.length === 2, Array.isArray(value), value.length === 2);
     if (Array.isArray(value) && value.length === 2) {
         var start = value[0];
         var end = value[1];
 
         if (start && end) {
-            console.log('if (start && end) {', (0, _util.formatDate)(start, format), start);
             return (0, _util.formatDate)(start, format) + RANGE_SEPARATOR + (0, _util.formatDate)(end, format);
         }
     }
@@ -11892,7 +11894,6 @@ exports.default = {
         visualValue: {
             get: function get() {
                 var value = this.internalValue;
-                console.log('visualValue', value);
                 if (!value) return;
                 var formatter = (TYPE_VALUE_RESOLVER_MAP[this.type] || TYPE_VALUE_RESOLVER_MAP['default']).formatter;
                 var format = DEFAULT_FORMATS[this.type];
@@ -25197,8 +25198,6 @@ __webpack_require__(156);
 
 __webpack_require__(154);
 
-__webpack_require__(155);
-
 __webpack_require__(153);
 
 var _affix = __webpack_require__(108);
@@ -27617,16 +27616,7 @@ __webpack_require__(87)(KEY);
 
 
 /***/ }),
-/* 440 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// 22.1.2.2 / 15.4.3.2 Array.isArray(arg)
-var $export = __webpack_require__(43);
-
-$export($export.S, 'Array', { isArray: __webpack_require__(92) });
-
-
-/***/ }),
+/* 440 */,
 /* 441 */
 /***/ (function(module, exports, __webpack_require__) {
 
