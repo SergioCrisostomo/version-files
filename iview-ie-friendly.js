@@ -11709,11 +11709,13 @@ var DATE_PARSER = function DATE_PARSER(text, format) {
 };
 var RANGE_FORMATTER = function RANGE_FORMATTER(value, format) {
     console.log('RANGE_FORMATTER', value, format);
+    console.log(Array.isArray(value) && value.length === 2, Array.isArray(value), value.length === 2);
     if (Array.isArray(value) && value.length === 2) {
         var start = value[0];
         var end = value[1];
 
         if (start && end) {
+            console.log('if (start && end) {', (0, _util.formatDate)(start, format), start);
             return (0, _util.formatDate)(start, format) + RANGE_SEPARATOR + (0, _util.formatDate)(end, format);
         }
     }
