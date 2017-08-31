@@ -11708,6 +11708,7 @@ var DATE_PARSER = function DATE_PARSER(text, format) {
     return (0, _util.parseDate)(text, format);
 };
 var RANGE_FORMATTER = function RANGE_FORMATTER(value, format) {
+    console.log('RANGE_FORMATTER', value, format);
     if (Array.isArray(value) && value.length === 2) {
         var start = value[0];
         var end = value[1];
