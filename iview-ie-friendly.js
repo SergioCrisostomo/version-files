@@ -11889,6 +11889,7 @@ exports.default = {
         visualValue: {
             get: function get() {
                 var value = this.internalValue;
+                console.log('visualValue', value);
                 if (!value) return;
                 var formatter = (TYPE_VALUE_RESOLVER_MAP[this.type] || TYPE_VALUE_RESOLVER_MAP['default']).formatter;
                 var format = DEFAULT_FORMATS[this.type];
