@@ -21633,7 +21633,7 @@ module.exports = { render: function render() {
         "text": _vm.loadingText,
         "active": _vm.showBottomLoader
       }
-    })], 1)]), _vm._v("\n    rc17\n")]);
+    })], 1)])]);
   }, staticRenderFns: [] };
 
 /***/ }),
