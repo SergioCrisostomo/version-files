@@ -18851,7 +18851,7 @@ exports.default = {
         },
         onClickoutside: function onClickoutside(e) {
             this.handleMouseleave();
-            this.$emit('on-clickoutside', e);
+            if (this.currentVisible) this.$emit('on-clickoutside', e);
         },
         handleClose: function handleClose() {
             if (this.trigger === 'custom') return false;
