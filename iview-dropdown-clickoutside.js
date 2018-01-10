@@ -18849,9 +18849,9 @@ exports.default = {
                 }, 150);
             }
         },
-        onClickoutside: function onClickoutside() {
+        onClickoutside: function onClickoutside(e) {
             this.handleMouseleave();
-            this.$emit('on-clickoutside', val);
+            this.$emit('on-clickoutside', e);
         },
         handleClose: function handleClose() {
             if (this.trigger === 'custom') return false;
