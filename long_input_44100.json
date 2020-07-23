@@ -1,0 +1,32 @@
+{
+    "name": "long_input_44100.wav",
+    "duration": 54311,
+    "playlists": {
+        "flac": [
+            "long_input_44100_000.flac",
+            "long_input_44100_001.flac",
+            "long_input_44100_002.flac",
+            "long_input_44100_003.flac",
+            "long_input_44100_004.flac",
+            "long_input_44100_005.flac",
+            "long_input_44100_006.flac",
+            "long_input_44100_007.flac",
+            "long_input_44100_008.flac",
+            "long_input_44100_009.flac",
+            "long_input_44100_010.flac"
+        ],
+        "192k": [
+            "long_input_44100_000.opus",
+            "long_input_44100_001.opus",
+            "long_input_44100_002.opus",
+            "long_input_44100_003.opus",
+            "long_input_44100_004.opus",
+            "long_input_44100_005.opus",
+            "long_input_44100_006.opus",
+            "long_input_44100_007.opus",
+            "long_input_44100_008.opus",
+            "long_input_44100_009.opus",
+            "long_input_44100_010.opus"
+        ]
+    }
+}
