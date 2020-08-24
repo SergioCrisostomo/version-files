@@ -6,14 +6,14 @@
     "playlists": {
         "192k": [
             {
-                "name": "short_input_48000_192k_000.mp4",
+                "name": "short_input_48000_192k_000_cenc.mp4",
                 "bitrate": "192k",
                 "segmentTime": 5,
                 "chunkIndex": 0,
                 "data": null
             },
             {
-                "name": "short_input_48000_192k_001.mp4",
+                "name": "short_input_48000_192k_001_cenc.mp4",
                 "bitrate": "192k",
                 "segmentTime": 5,
                 "chunkIndex": 1,
